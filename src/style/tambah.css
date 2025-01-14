@@ -1,0 +1,84 @@
+/* Gaya untuk container utama */
+div {
+    padding: 50px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Judul Form */
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Gaya untuk label */
+  label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Input Field */
+  input[type="text"],
+  input[type="number"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: border 0.3s ease;
+  }
+  
+  /* Hover pada Input */
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Gaya untuk Button */
+  button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Hover pada Button */
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Responsif untuk layar kecil */
+  @media (max-width: 768px) {
+    div {
+      padding: 30px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  }
+  

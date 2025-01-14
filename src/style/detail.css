@@ -1,0 +1,60 @@
+/* Detail.css */
+.detail-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .detail-container h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 25%;
+  }
+  
+  .detail-container h3 span {
+    color: #007bff;
+    font-size: 18px;
+    margin-right: 10px;
+
+  }
+  
+  .detail-container p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  .detail-container p span {
+    font-weight: bold;
+  }
+
+  .detail-container .link_gambar {
+    position: absolute;
+    top: 50%;              /* Memindahkan gambar ke tengah secara vertikal */
+    left: 50%;             /* Memindahkan gambar ke tengah secara horizontal */
+    transform: translate(-50%, -50%);
+  }
+  
+  .detail-container .type {
+    color: #17a2b8;
+  }
+  
+  .detail-container .price {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .detail-container .description {
+    font-style: italic;
+    color: #6c757d;
+  }
+  

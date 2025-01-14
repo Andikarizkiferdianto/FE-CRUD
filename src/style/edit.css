@@ -1,0 +1,77 @@
+/* Container utama */
+.edit-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Heading */
+  .edit-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /* Form Label */
+  .edit-container .form-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Input Fields */
+  .edit-container .form-control {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+  }
+  
+  .edit-container .form-control:focus {
+    border-color: #8ec3b0;
+    box-shadow: 0 0 5px rgba(142, 195, 176, 0.5);
+  }
+  
+  /* Submit Button */
+  .edit-container .btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #8ec3b0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-container .btn-primary:hover {
+    background-color: #76a596;
+  }
+  
+  /* Responsif */
+  @media (max-width: 768px) {
+    .edit-container {
+      padding: 20px;
+    }
+  
+    .edit-container h1 {
+      font-size: 24px;
+    }
+  
+    .edit-container .form-control {
+      font-size: 13px;
+    }
+  
+    .edit-container .btn-primary {
+      font-size: 14px;
+    }
+  }
+  
