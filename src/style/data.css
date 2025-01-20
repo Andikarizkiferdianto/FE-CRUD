@@ -3,6 +3,54 @@
     padding: 50px;
     font-family: 'Arial', sans-serif;
   }
+
+/* Style untuk tombol pertama */
+.custom-button {
+  color: #ffffff; /* text-white */
+  background-color: #8EC3B0; /* bg-green-400 (diganti dengan #8EC3B0) */
+  font-weight: 600; /* font-semibold */
+  padding: 12px 20px; /* py-3 px-5 */
+  border-radius: 0.375rem; /* rounded-md */
+  transition: all 0.2s ease-in-out; /* transition duration-200 ease-in-out */
+  transform: scale(1); /* default transform */
+  margin-right: 13rem; /* mr-52 */
+}
+
+/* Hover effect */
+.custom-button:hover {
+  background-color: #64c795; /* hover:bg-green-700 */
+  transform: scale(1.05); /* hover:scale-105 */
+}
+
+/* Focus effect */
+.custom-button:focus {
+  outline: none; /* focus:outline-none */
+  box-shadow: 0 0 0 2px #48BB78; /* focus:ring-2 focus:ring-green-500 */
+}
+
+/* Style untuk tombol kedua */
+.custom-button-emerald {
+  color: #ffffff; /* text-white */
+  background-color: #8EC3B0; /* bg-emerald-300 */
+  font-weight: 600; /* font-semibold */
+  padding: 12px 144px; /* py-3 px-36 */
+  border-radius: 0.375rem; /* rounded-md */
+  transition: all 0.2s ease-in-out; /* transition duration-200 ease-in-out */
+  transform: scale(1); /* default transform */
+}
+
+/* Hover effect */
+.custom-button-emerald:hover {
+  background-color: #64c795; /* hover:bg-green-700 */
+  transform: scale(1.05); /* hover:scale-105 */
+}
+
+/* Focus effect */
+.custom-button-emerald:focus {
+  outline: none; /* focus:outline-none */
+  box-shadow: 0 0 0 2px #48BB78; /* focus:ring-2 focus:ring-green-500 */
+}
+
   
   /* Tabel */
   .table {
@@ -36,13 +84,13 @@
   
   /* Tombol */
   .button {
-    padding: 8px 16px;
+    padding: 7px 5px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-right: 5px;
+    margin-right: 0px;
     text-decoration: none;
   }
   
@@ -50,30 +98,36 @@
     background-color: #8EC3B0;
     color: white;
     border: none;
+    margin-right: 20px;
+    padding: 8px 50px;
   }
   
   .button.edit:hover {
-    background-color: #76a596;
+    background-color: #64c795;
   }
   
   .button.delete {
     background-color: #FC3C3C;
     color: white;
     border: none;
+    margin-right: 20px;
+    padding: 8px 50px;
   }
   
   .button.delete:hover {
-    background-color: #d63232;
+    background-color: #b81c1c;
   }
   
   .button.detail {
     background-color: #B47B84;
     color: white;
     border: none;
+    margin-right: -270px;
+    padding: 8px 50px;
   }
   
   .button.detail:hover {
-    background-color: #9c6870;
+    background-color: #86555c;
   }
   
   /* Responsif */

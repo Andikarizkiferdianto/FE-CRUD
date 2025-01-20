@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { API_DUMMY } from "../utils/base_url";
 import "../style/data.css";
+import Swal from "sweetalert2";
 
 function Data() {
   const [makanan, setMakanan] = useState([]); // State berfungsi untuk menyimpan data sementara
@@ -20,14 +21,25 @@ function Data() {
   };
 
   const deleteUser = async (id) => {
-    axios
-      .delete(`${API_DUMMY}/api/menus/${id}`)
-      .then(() => {
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Error deleting product:", error);
-      });
+    Swal.fire({
+      title: "Apakah Anda yakin?",
+      text: "Data yang dihapus tidak dapat dikembalikan.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya, Hapus!",
+      cancelButtonText: "Batal",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`${API_DUMMY}/api/menus/${id}`)
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error("Error deleting product:", error);
+          });
+      }
+    });
   };
 
   useEffect(() => {
@@ -36,12 +48,9 @@ function Data() {
 
   return (
     <div className="data-container">
-      <a
-        className="text-white bg-blue-500 font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        href="/tambah"
-      >
-        Tambah
-      </a>
+      <a className="custom-button" href="/tambah">Tambah</a>
+      <a className="custom-button-emerald" href="/makanan">Makanan</a>
+      <a className="custom-button-emerald" href="/minuman">Minuman</a>
       <Table striped bordered hover className="table">
         <thead>
           <tr>

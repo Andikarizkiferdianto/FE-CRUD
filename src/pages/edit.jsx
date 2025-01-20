@@ -2,13 +2,14 @@ import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import {useNavigate,useParams,} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import { API_DUMMY } from "../utils/base_url";
-import "../style/edit.css"
+import "../style/edit.css";
 
 function Edit() {
   const history = useNavigate();
-  const {id} = useParams(); // mengambil nilai parameter yg ada di URL browser
+  const { id } = useParams(); // mengambil nilai parameter yg ada di URL browser
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
@@ -28,44 +29,58 @@ function Edit() {
         setGambar(drink.link_gambar);
       })
       .catch((error) => {
-        alert("terjadi kesalahan" + error);
+        Swal.fire({
+          icon: "error",
+          title: "Terjadi Kesalahan",
+          text: `Error: ${error.message}`,
+        });
       });
   }, [id]);
 
- const edit = async (e) => {
-  e.preventDefault();
+  const edit = async (e) => {
+    e.preventDefault();
 
-  try {
-    await axios.put(`${API_DUMMY}/api/menus/${id}` , {
-      name,
-      type,
-      price,
-      deskripsi,
-      link_gambar,
-    });
+    try {
+      await axios.put(`${API_DUMMY}/api/menus/${id}`, {
+        name,
+        type,
+        price,
+        deskripsi,
+        link_gambar,
+      });
 
-    alert("Data berhasil diubah")
-    history("/menu");
-  } catch (error) {
-    console.log(error);
-  }
- };
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil",
+        text: "Data berhasil diubah!",
+      }).then(() => {
+        history("/menu");
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal",
+        text: `Terjadi kesalahan: ${error.message}`,
+      });
+    }
+  };
 
   return (
     <div className="edit-container">
-     <h1>Form Edit Data</h1>
+      <h1>Form Edit Data</h1>
 
       <Form onSubmit={edit}>
-       <Form.Group className="mb-3">
-       <Form.Label>Nama Produk</Form.Label>
-        <Form.Control
-          name="name"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Nama Produk"
-         />
+        <Form.Group className="mb-3">
+          <Form.Label>Nama Produk</Form.Label>
+          <Form.Control
+            name="name"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Nama Produk"
+            style={{ borderRadius: "4px", padding: "6px", margin: "7px" }}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -77,6 +92,7 @@ function Edit() {
             onChange={(e) => setType(e.target.value)}
             type="text"
             placeholder="nama Produk"
+            style={{ borderRadius: "4px", padding: "6px", margin: "7px" }}
           />
         </Form.Group>
 
@@ -89,6 +105,7 @@ function Edit() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="Harga"
+            style={{ borderRadius: "4px", padding: "6px", margin: "7px" }}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -100,6 +117,7 @@ function Edit() {
             value={deskripsi}
             onChange={(e) => setDeskripsi(e.target.value)}
             placeholder="Deskripsi"
+            style={{ borderRadius: "4px", padding: "6px", margin: "7px" }}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -111,14 +129,13 @@ function Edit() {
             value={link_gambar}
             onChange={(e) => setGambar(e.target.value)}
             placeholder="Link Gambar"
+            style={{ borderRadius: "4px", padding: "6px", margin: "7px" }}
           />
         </Form.Group>
 
-        <Button type="submit">
-          Submit
-        </Button>
-  </Form>
-</div>
+        <Button type="submit">Submit</Button>
+      </Form>
+    </div>
   );
 }
 

@@ -8,7 +8,7 @@ import { API_DUMMY } from "../utils/base_url";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");                            
-  // eslint-disable-next-line no-unused-vars
+   
   const navigate = useNavigate();
 
   const register = async (e) => {

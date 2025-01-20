@@ -29,6 +29,9 @@ function Detail() {
       <p className="type">Type : {makanan.type}</p>
       <p className="price">Price : {makanan.price}</p>
       <p className="description">Description : {makanan.deskripsi}</p>
+      <br />
+      <a className="text-white ml-52 bg-blue-500 font-semibold py-3 px-12 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+       href="/menu">Kembali</a>
     </div>
   );
 }
