@@ -67,7 +67,7 @@ export default function Register() {
           <p>
             {" "}
             Belum punya akun?
-            <a href="/register"> Register</a>
+            <a href="/"> Register</a>
           </p>
         </form>
       </div>

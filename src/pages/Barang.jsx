@@ -8,15 +8,27 @@ import Swal from "sweetalert2";
 
 function Data() {
   const [makanan, setMakanan] = useState([]); // State berfungsi untuk menyimpan data sementara
+  const [searchQuery, setSearchQuery] = useState(""); // State untuk menyimpan query pencarian
 
   const getAll = () => {
-    axios // axios berfungsi untuk request data melalui http
-      .get(`${API_DUMMY}/api/menus`) // mengambil data dari link tersebut
+    axios
+      .get(`${API_DUMMY}/api/menus`) // Endpoint untuk mendapatkan semua data
       .then((res) => {
         setMakanan(res.data);
       })
       .catch((error) => {
         alert("Terjadi kesalahan: " + error);
+      });
+  };
+
+  const searchByName = () => {
+    axios
+      .get(`${API_DUMMY}/api/menus/menu/${searchQuery}`) // Endpoint pencarian berdasarkan nama
+      .then((res) => {
+        setMakanan(res.data); // Memperbarui state dengan hasil pencarian
+      })
+      .catch((error) => {
+        alert("Terjadi kesalahan saat mencari data: " + error);
       });
   };
 
@@ -48,9 +60,49 @@ function Data() {
 
   return (
     <div className="data-container">
-      <a className="custom-button" href="/tambah">Tambah</a>
-      <a className="custom-button-emerald" href="/makanan">Makanan</a>
-      <a className="custom-button-emerald" href="/minuman">Minuman</a>
+      <div
+        className="button-search-container"
+        style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}
+      >
+        <a className="custom-button" href="/tambah" style={{ marginRight: "10px" }}>
+          Tambah
+        </a>
+        <a className="custom-button-emerald" href="/makanan" style={{ marginRight: "10px" }}>
+          Makanan
+        </a>
+        <a className="custom-button-emerald" href="/minuman" style={{ marginRight: "20px" }}>
+          Minuman
+        </a>
+
+
+        <input
+          type="text"
+          placeholder="Cari menu..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "300px",
+            marginRight: "10px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+          }}
+        />
+        <button
+          onClick={searchByName}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Cari
+        </button>
+      </div>
+
       <Table striped bordered hover className="table">
         <thead>
           <tr>

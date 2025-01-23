@@ -24,7 +24,7 @@ function Add() {
     if (!name || !type || !price || !deskripsi) {
       Swal.fire({
         icon: "warning",
-        title: "Harap isi semua field!",
+        title: "Harap isi semua field!!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -67,7 +67,7 @@ function Add() {
         }
       );
       
-      console.log(response.data);  // Tambahkan ini untuk memeriksa response
+      console.log(response.data);
       
       if (response.data.code === 200 || response.data.code === 201) {
         Swal.fire({
