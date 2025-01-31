@@ -7,12 +7,12 @@ import "../style/data.css";
 import Swal from "sweetalert2";
 
 function Data() {
-  const [makanan, setMakanan] = useState([]); // State berfungsi untuk menyimpan data sementara
-  const [searchQuery, setSearchQuery] = useState(""); // State untuk menyimpan query pencarian
+  const [makanan, setMakanan] = useState([]); 
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   const getAll = () => {
     axios
-      .get(`${API_DUMMY}/api/menus`) // Endpoint untuk mendapatkan semua data
+      .get(`${API_DUMMY}/api/menus`) 
       .then((res) => {
         setMakanan(res.data);
       })
@@ -23,9 +23,9 @@ function Data() {
 
   const searchByName = () => {
     axios
-      .get(`${API_DUMMY}/api/menus/menu/${searchQuery}`) // Endpoint pencarian berdasarkan nama
+      .get(`${API_DUMMY}/api/menus/menu/${searchQuery}`)
       .then((res) => {
-        setMakanan(res.data); // Memperbarui state dengan hasil pencarian
+        setMakanan(res.data); 
       })
       .catch((error) => {
         alert("Terjadi kesalahan saat mencari data: " + error);
