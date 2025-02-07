@@ -8,6 +8,7 @@ import Detail from "./pages/detail";
 import Tambah from "./pages/tambah";
 import Makanan from "./pages/makanan";
 import Minuman from "./pages/minuman";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/tambah" element={<Tambah />} />
           <Route path="/makanan" element={<Makanan />} />
           <Route path="/minuman" element={<Minuman />} />
+          <Route path="/hasil" element={<SearchResults />} />
         </Routes>
       </Box>
     </Router>

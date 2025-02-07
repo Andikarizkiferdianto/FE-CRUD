@@ -1,37 +1,39 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { API_DUMMY } from "../utils/base_url";
 import "../style/data.css";
 import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
 
-function Data() {
+function SearchResults() {
   const [makanan, setMakanan] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  // Ambil query pencarian dari URL, misalnya: /hasil?query=nama-menu
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+  const query = queryParams.get("query") || "";
+  // State untuk input pencarian (pre-filled dengan query)
+  const [searchQuery, setSearchQuery] = useState(query);
 
-  const getAll = () => {
+  // Jika query kosong, alihkan ke halaman /menu
+  useEffect(() => {
+    if (query.trim() === "") {
+      navigate("/menu");
+      return;
+    }
+    // Jika query tidak kosong, ambil data pencarian berdasarkan query
     axios
-      .get(`${API_DUMMY}/api/menus`)
-      .then((res) => {
-        setMakanan(res.data);
-      })
-      .catch((error) => {
-        alert("Terjadi kesalahan: " + error);
-      });
-  };
-
-  const searchByName = () => {
-    axios
-      .get(`${API_DUMMY}/api/menus/menu/${searchQuery}`)
+      .get(`${API_DUMMY}/api/menus/menu/${query}`)
       .then((res) => {
         setMakanan(res.data);
       })
       .catch((error) => {
         alert("Terjadi kesalahan saat mencari data: " + error);
       });
-  };
+  }, [query, navigate]);
 
   const deleteUser = async (id) => {
     Swal.fire({
@@ -55,10 +57,6 @@ function Data() {
     });
   };
 
-  useEffect(() => {
-    getAll();
-  }, []);
-
   return (
     <div className="data-container">
       <div
@@ -68,18 +66,10 @@ function Data() {
         <a className="custom-button" href="/tambah" style={{ marginRight: "10px" }}>
           Tambah
         </a>
-        <a
-          className="custom-button-emerald"
-          href="/makanan"
-          style={{ marginRight: "10px" }}
-        >
+        <a className="custom-button-emerald" href="/makanan" style={{ marginRight: "10px" }}>
           Makanan
         </a>
-        <a
-          className="custom-button-emerald"
-          href="/minuman"
-          style={{ marginRight: "20px" }}
-        >
+        <a className="custom-button-emerald" href="/minuman" style={{ marginRight: "20px" }}>
           Minuman
         </a>
 
@@ -100,9 +90,9 @@ function Data() {
             },
           }}
         />
-
         <Button
           onClick={() => (window.location.href = `/hasil?query=${searchQuery}`)}
+          variant="contained"
           style={{
             padding: "10px 20px",
             backgroundColor: "#007bff",
@@ -115,14 +105,13 @@ function Data() {
           Cari
         </Button>
       </div>
-
       <Table striped bordered hover className="table">
         <thead>
           <tr>
             <th style={{ width: "20px" }}>No</th>
             <th>Nama</th>
-            <th>Tipe</th>
-            <th>Harga</th>
+            <th>Type</th>
+            <th>Price</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -155,4 +144,4 @@ function Data() {
   );
 }
 
-export default Data;
+export default SearchResults;

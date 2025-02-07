@@ -1,60 +1,57 @@
-/* Container utama */
+
 .data-container {
     padding: 50px;
     font-family: 'Arial', sans-serif;
   }
 
-/* Style untuk tombol pertama */
+
 .custom-button {
-  color: #ffffff; /* text-white */
-  background-color: #8EC3B0; /* bg-green-400 (diganti dengan #8EC3B0) */
-  font-weight: 600; /* font-semibold */
-  padding: 12px 20px; /* py-3 px-5 */
-  border-radius: 0.375rem; /* rounded-md */
-  transition: all 0.2s ease-in-out; /* transition duration-200 ease-in-out */
-  transform: scale(1); /* default transform */
-  margin-right: 13rem; /* mr-52 */
+  color: #ffffff; 
+  background-color: #8EC3B0; 
+  font-weight: 600; 
+  padding: 12px 20px; 
+  border-radius: 0.375rem; 
+  transition: all 0.2s ease-in-out; 
+  transform: scale(1); 
+  margin-right: 13rem; 
   box-shadow:  0 4px 8px rgba(0, 0, 0, 0.212);
 }
 
-/* Hover effect */
+
 .custom-button:hover {
-  background-color: #64c795; /* hover:bg-green-700 */
-  transform: scale(1.05); /* hover:scale-105 */
+  background-color: #64c795; 
+  transform: scale(1.05); 
 }
 
-/* Focus effect */
+
 .custom-button:focus {
-  outline: none; /* focus:outline-none */
-  box-shadow: 0 0 0 2px #48BB78; /* focus:ring-2 focus:ring-green-500 */
+  outline: none;
+  box-shadow: 0 0 0 2px #48BB78; 
 }
 
-/* Style untuk tombol kedua */
 .custom-button-emerald {
-  color: #ffffff; /* text-white */
-  background-color: #8EC3B0; /* bg-emerald-300 */
-  font-weight: 600; /* font-semibold */
-  padding: 12px 144px; /* py-3 px-36 */
-  border-radius: 0.375rem; /* rounded-md */
-  transition: all 0.2s ease-in-out; /* transition duration-200 ease-in-out */
-  transform: scale(1); /* default transform */
+  color: #ffffff; 
+  background-color: #8EC3B0; 
+  font-weight: 600; 
+  padding: 12px 144px; 
+  border-radius: 0.375rem; 
+  transition: all 0.2s ease-in-out; 
+  transform: scale(1); 
   box-shadow:  0 4px 8px rgba(0, 0, 0, 0.212);
 }
 
-/* Hover effect */
+
 .custom-button-emerald:hover {
-  background-color: #64c795; /* hover:bg-green-700 */
-  transform: scale(1.05); /* hover:scale-105 */
+  background-color: #64c795; 
+  transform: scale(1.05); 
 }
 
-/* Focus effect */
+
 .custom-button-emerald:focus {
-  outline: none; /* focus:outline-none */
-  box-shadow: 0 0 0 2px #48BB78; /* focus:ring-2 focus:ring-green-500 */
+  outline: none; 
+  box-shadow: 0 0 0 2px #48BB78; 
 }
 
-  
-  /* Tabel */
   .table {
     width: 100%;
     margin: 20px auto;
@@ -84,7 +81,6 @@
     background-color: #f1f1f1;
   }
   
-  /* Tombol */
   .button {
     padding: 7px 5px;
     font-size: 14px;

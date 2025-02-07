@@ -27,7 +27,7 @@ export default function Login() {
         timer: 1500,
       });
       setTimeout(() => {
-        window.location.href = "/landingpage";
+        window.location.href = "/menu";
       }, 1500);
     } catch (error) {
       console.log(error);

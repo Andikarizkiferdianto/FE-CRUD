@@ -1,40 +1,65 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_DUMMY } from "../utils/base_url";
 import "../style/detail.css";
-
+import { Box, Typography, Button } from "@mui/material";
 
 function Detail() {
   const { id } = useParams();
-  const [makanan, setMakanan] = useState([]);
+  const [makanan, setMakanan] = useState({});
 
   useEffect(() => {
-    const getData = () => {
-      axios
-        .get(`${API_DUMMY}/api/menus/${id}`)
-        .then((data) => setMakanan(data.data))
-        .catch((error) => console.log(error));
-    };
-    getData();
+    axios
+      .get(`${API_DUMMY}/api/menus/${id}`)
+      .then((response) => setMakanan(response.data))
+      .catch((error) => console.log(error));
   }, [id]);
 
   return (
-    <div className="detail-container">
-      <h3>
+    <Box className="detail-container">
+      <Typography variant="h3" component="h3">
         {makanan.name}
-      </h3>
+      </Typography>
       <img src={makanan.link_gambar} alt="" />
-      <p className="type">Type : {makanan.type}</p>
-      <p className="price">Price : {makanan.price}</p>
-      <p className="description">Description : {makanan.deskripsi}</p>
+      <Typography variant="body1" component="p" className="type">
+        Type : {makanan.type}
+      </Typography>
+      <Typography variant="body1" component="p" className="price">
+        Price : {makanan.price}
+      </Typography>
+      <Typography variant="body1" component="p" className="description">
+        Description : {makanan.deskripsi}
+      </Typography>
       <br />
-      <a className="text-white ml-52 bg-blue-500 font-semibold py-3 px-12 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
-       href="/menu">Kembali</a>
-    </div>
+      <Button
+        component="a"
+        href="/menu"
+        sx={{
+          color: "white",
+          ml: "13rem",
+          backgroundColor: "#3B82F6", 
+          fontWeight: 600, 
+          py: 1.5, 
+          px: 6,   
+          borderRadius: "0.375rem", 
+          transition: "all 0.2s ease-in-out",
+          textDecoration: "none",
+          "&:hover": {
+            backgroundColor: "#2563EB", 
+            transform: "scale(1.05)",
+          },
+          "&:focus": {
+            outline: "none",
+            boxShadow: "0 0 0 2px #2563EB", 
+          },
+        }}
+      >
+        Kembali
+      </Button>
+    </Box>
   );
 }
 
 export default Detail;
-

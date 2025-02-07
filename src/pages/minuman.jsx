@@ -1,16 +1,16 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
+import { Table } from "@mui/material";
 import { API_DUMMY } from "../utils/base_url";
 import "../style/data.css";
 
 function Minuman() {
-  const [minuman, setMinuman] = useState([]); // State untuk menyimpan data minuman
+  const [minuman, setMinuman] = useState([]); 
 
   const getMinuman = () => {
     axios
-      .get(`${API_DUMMY}/api/menus/type/minuman`) // Filter berdasarkan "type" minuman
+      .get(`${API_DUMMY}/api/menus/type/minuman`) 
       .then((res) => {
         setMinuman(res.data);
       })
@@ -25,8 +25,8 @@ function Minuman() {
 
   return (
     <div className="data-container">
-      <h1>Daftar Minuman</h1>
-      <Table striped bordered hover className="table">
+      <h1 className="font-semibold">Daftar Minuman</h1>
+      <Table className="table" sx={{ minWidth: 650 }} aria-label="simple table">
         <thead>
           <tr>
             <th style={{ width: "20px" }}>No</th>
@@ -46,8 +46,12 @@ function Minuman() {
           ))}
         </tbody>
       </Table>
-      <a className="text-white bg-blue-500 font-semibold py-3 px-36 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
-       href="/menu">Kembali</a>
+      <a
+        className="text-white bg-blue-500 font-semibold py-3 px-36 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        href="/menu"
+      >
+        Kembali
+      </a>
     </div>
   );
 }

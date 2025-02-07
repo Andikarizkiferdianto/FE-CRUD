@@ -1,11 +1,9 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { TextField, Button, Box, Typography, Stack } from "@mui/material";
 import axios from "axios";
-import { API_DUMMY } from "../utils/base_url";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { API_DUMMY } from "../utils/base_url";
 import { uploadImageToS3 } from "../utils/uploadImageToS3";
 
 function Add() {
@@ -18,13 +16,12 @@ function Add() {
   const navigate = useNavigate();
 
   const addData = async (e) => {
-    e.preventDefault(); // Menghindari reload halaman
+    e.preventDefault();
 
-    // Validasi input
     if (!name || !type || !price || !deskripsi) {
       Swal.fire({
         icon: "warning",
-        title: "Harap isi semua field!!",
+        title: "Harap isi semua field!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -34,7 +31,6 @@ function Add() {
     try {
       let imageUrl = "";
 
-      // Upload gambar jika ada
       if (link_gambar) {
         try {
           imageUrl = await uploadImageToS3(link_gambar);
@@ -46,18 +42,17 @@ function Add() {
             showConfirmButton: false,
             timer: 1500,
           });
-          return; // Keluar dari fungsi jika upload gambar gagal
+          return;
         }
       }
 
-      // Kirim data ke API
       const response = await axios.post(
         `${API_DUMMY}/api/menus`,
         {
-          name: name,
-          price: price,
-          type: type,
-          deskripsi: deskripsi,
+          name,
+          price,
+          type,
+          deskripsi,
           link_gambar: imageUrl,
         },
         {
@@ -66,29 +61,15 @@ function Add() {
           },
         }
       );
-      
-      console.log(response.data);
-      
-      if (response.data.code === 200 || response.data.code === 201) {
+
+      if (response.status === 200 || response.status === 201) {
         Swal.fire({
           icon: "success",
-          title: "Data berhasil ditambahkan!!",
-          showConfirmButton: false,
-          timer: 1500,
+          title: "Data berhasil ditambahkan!",
+          showConfirmButton: true, 
+        }).then(() => {
+          navigate("/menu"); 
         });
-        setTimeout(() => {
-          navigate("/menu");
-        }, 1500);
-      } else {
-        Swal.fire({
-          icon: "success",
-          title: "Data berhasil ditambahkan!!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        setTimeout(() => {
-          navigate("/menu");
-        }, 1500);
       }
       
     } catch (error) {
@@ -109,130 +90,92 @@ function Add() {
   };
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         padding: "50px",
         backgroundColor: "#f9f9f9",
         borderRadius: "8px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.66)",
-        width: "50%",
+        width: { xs: "90%", md: "50%" },
         margin: "auto",
       }}
     >
-      <h1 style={{ textAlign: "center", color: "#333" }}>Form Tambah Data</h1>
+      <Typography variant="h4" align="center" gutterBottom>
+        Form Tambah Data
+      </Typography>
 
-      <Form onSubmit={addData}>
-        <Form.Group className="mb-3">
-          <Form.Label style={{ fontWeight: "bold" }}>Nama Produk</Form.Label>
-          <Form.Control
-            name="name"
-            id="name"
+      <form onSubmit={addData}>
+        <Stack spacing={2}>
+          <TextField
+            label="Nama Produk"
+            variant="outlined"
+            fullWidth
             value={name}
             onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Nama Produk"
-            style={{
-              borderRadius: "4px",
-              padding: "6px",
-              margin: "7px",
-              boxShadow: "0 3px 8px rgba(0, 0, 0, 0.19)",
-            }}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label style={{ fontWeight: "bold" }}>Tipe Produk</Form.Label>
-          <Form.Control
-            type="text"
-            id="type"
+          <TextField
+            label="Tipe Produk"
+            variant="outlined"
+            fullWidth
             value={type}
             onChange={(e) => setType(e.target.value)}
-            placeholder="Tipe Produk"
-            style={{
-              borderRadius: "4px",
-              padding: "6px",
-              margin: "7px",
-              boxShadow: "0 3px 8px rgba(0, 0, 0, 0.19)",
-            }}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label style={{ fontWeight: "bold" }}>Harga</Form.Label>
-          <Form.Control
+          <TextField
+            label="Harga"
+            variant="outlined"
             type="number"
-            name="price"
-            id="price"
+            fullWidth
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder="Harga"
-            style={{
-              borderRadius: "4px",
-              padding: "6px",
-              margin: "7px",
-              boxShadow: "0 3px 8px rgba(0, 0, 0, 0.19)",
-            }}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label style={{ fontWeight: "bold" }}>Deskripsi</Form.Label>
-          <Form.Control
-            type="text"
-            name="deskripsi"
-            id="deskripsi"
+          <TextField
+            label="Deskripsi"
+            variant="outlined"
+            fullWidth
+            multiline
+            rows={3}
             value={deskripsi}
             onChange={(e) => setDeskripsi(e.target.value)}
-            placeholder="Deskripsi"
-            style={{
-              borderRadius: "4px",
-              padding: "6px",
-              margin: "7px",
-              boxShadow: "0 3px 8px rgba(0, 0, 0, 0.19)",
-            }}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label style={{ fontWeight: "bold" }}>Link Gambar</Form.Label>
-          <Form.Control
+          <input
             type="file"
-            name="link_gambar"
-            id="link_gambar"
             accept="image/*"
             onChange={(e) => setGambar(e.target.files[0])}
-            placeholder="Link Gambar"
             style={{
+              padding: "10px",
+              border: "1px solid #ccc",
               borderRadius: "4px",
-              padding: "6px",
-              margin: "7px",
-              boxShadow: "0 3px 8px rgba(0, 0, 0, 0.19)",
+              backgroundColor: "#fff",
             }}
           />
-        </Form.Group>
-
-        <Button
-          variant="primary"
-          type="submit"
-          style={{
-            backgroundColor: "#007bff",
-            borderColor: "#007bff",
-            borderRadius: "5px",
-            padding: "10px 30px",
-            fontWeight: "bold",
-            color: "white",
-          }}
-        >
-          Submit
-        </Button>
-        <a
-          className="text-white ml-72 bg-blue-500 font-semibold py-3 px-12 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          href="/menu"
-        >
-          Kembali
-        </a>
-      </Form>
-    </div>
+          <Stack direction="row" spacing={2}>
+            <Button
+              type="submit"
+              sx={{
+                backgroundColor: "#007bff",
+                borderColor: "#007bff",
+                borderRadius: "5px",
+                padding: "10px 30px",
+                fontWeight: "bold",
+                color: "white",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#0056b3",
+                },
+              }}
+            >
+              Submit
+            </Button>
+            <a
+              className="text-white ml-72 bg-blue-500 font-semibold py-3 px-12 rounded-md transition duration-200 ease-in-out transform hover:bg-blue-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              href="/menu"
+            >
+              Kembali
+            </a>
+          </Stack>
+        </Stack>
+      </form>
+    </Box>
   );
 }
 
